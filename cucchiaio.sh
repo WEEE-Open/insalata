@@ -14,7 +14,10 @@ GH_URL="https://github.com/weee-open/"
 DEPS="git make docker.io docker-compose pciutils i2c-tools mesa-utils smartmontools dmidecode python3 python3-venv cloc"
 TARALLO_URL="http://localhost:80"
 WEEEHIRE_URL="http://localhost:8777"
-alias echo="echo -e"  # enable interpretation of backslash sequences
+# enable interpretation of backslash sequences
+function echo() {
+	echo -e "$@"
+}
 
 echo "\nUpdating local repos...\n"
 if [[ "$DISTRO_BASE" = "debian" ]]; then 
