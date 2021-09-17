@@ -17,23 +17,23 @@ WEEEHIRE_URL="http://localhost:8777"
 
 echo "\nUpdating local repos...\n"
 if [[ "$DISTRO_BASE" = "debian" ]]; then 
-	$SUDO apt update
+	$SUDO apt update || true
 else
-	$SUDO pacman -Syy
+	$SUDO pacman -Syy || true
 fi
 
 echo "\nInstalling global dependencies...\n"
 if [[ "$DISTRO_BASE" = "debian" ]]; then
-	"$SUDO"apt install -y $DEPS
+	$SUDO apt install -y $DEPS
 else
-	"$SUDO"pacman -Sy $DEPS
+	$SUDO pacman -Sy $DEPS
 fi
 
 if [[ ! "$(groups)" = *"docker"* ]]; then
 	# docs here: https://docs.docker.com/engine/install/linux-postinstall/
 	echo "\nEnabling user to run docker without sudo (first time only)...\n"
-	"$SUDO"groupadd docker
-	"$SUDO"usermod -aG docker $USER
+	$SUDO groupadd docker || true
+	[[ $EUID != 0 ]] && $SUDO usermod -aG docker $USER
 	newgrp docker
 fi
 
