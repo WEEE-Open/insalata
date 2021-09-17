@@ -43,7 +43,13 @@ function git_error() {
 	exit 2
 }
 
+# remove existing directory
+function rm_x_dir() {
+	[[ -d "$1" ]] && rm -rf "$1"
+}
+
 echo "Installing T.A.R.A.L.L.O (Tuttofare Assistente il Riuso di Aggeggi Logori e Localmente Opprimenti)...\n"
+rm_x_dir tarallo
 git clone "$GH_URL"tarallo
 cd tarallo || git_error
 sed -i 's/image: /image: docker.caste.dev\//g' docker-compose.yml
@@ -54,6 +60,7 @@ xdg-open "$TARALLO_URL"
 echo "T.A.R.A.L.L.O. was successfully installed!\nIt is available at $TARALLO_URL\nYou can shut it down from this directory with: docker-compose down\n"
 
 echo "Installing WEEEhire-ng...\n"
+rm_x_dir weeehire-ng
 git clone "$GH_URL"weeehire-ng
 cd weeehire-ng || git_error
 sqlite3 weeehire.db < database.sql
@@ -64,6 +71,7 @@ xdg-open "$WEEEHIRE_URL"
 echo "WEEEhire-ng was successfully installed!\nIt is available at $WEEEHIRE_URL\nYou can shut it down from this directory with: docker-compose down\n"
 
 echo "Installing P.E.R.A.C.O.T.T.A. (Progetto Esteso Raccolta Automatica Configurazioni hardware Organizzate Tramite Tarallo Autonomamente)...\n"
+rm_x_dir peracotta
 git clone "$GH_URL"peracotta
 cd peracotta || git_error
 python3 -m venv venv
@@ -75,6 +83,7 @@ cd ..
 echo "P.E.R.A.C.O.T.T.A. was successfully installed!\n"
 
 echo "Installing P.E.S.T.O. (Progetto di Erase Smart con Taralli Olistici)...\n"
+rm_x_dir pesto
 git clone "$GH_URL"pesto
 cd pesto || git_error
 python3 -m venv venv
@@ -87,6 +96,7 @@ cd ..
 echo "P.E.S.T.O. successfully installed!\n"
 
 echo "Installing S.A.R.D.I.N.A. (Statistiche Amabili Rendimento Degli Informatici Nell’Anno)...\n"
+rm_x_dir sardina
 git clone "$GH_URL"sardina
 cd sardina || git_error
 pip install -r requirements.txt
