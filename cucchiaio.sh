@@ -44,7 +44,7 @@ function git_error() {
 
 # remove existing directory
 function rm_x_dir() {
-	[[ -d "$1" ]] && rm -rf "$1"
+	[[ -d "$1" ]] && rm -rf "$1" || true  # true needed to keep running if dir does not exist
 }
 
 echo -e "\nInstalling T.A.R.A.L.L.O (Tuttofare Assistente il Riuso di Aggeggi Logori e Localmente Opprimenti)...\n"
