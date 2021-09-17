@@ -9,6 +9,7 @@ read -p "This script will install all the demo software of team WEEE Open with i
 
 # Arch vs Debian -based detection
 [[ -f /etc/debian_version ]] && DISTRO_BASE="debian" || DISTRO_BASE="arch"
+[[ $EUID = 0 ]] && SUDO="" || SUDO="sudo "
 GH_URL="https://github.com/weee-open/"
 DEPS="git make docker.io docker-compose pciutils i2c-tools mesa-utils smartmontools dmidecode python3 python3-venv cloc"
 TARALLO_URL="http://localhost:80"
@@ -16,23 +17,23 @@ WEEEHIRE_URL="http://localhost:8777"
 
 echo "\nUpdating local repos...\n"
 if [[ "$DISTRO_BASE" = "debian" ]]; then 
-	sudo apt update
+	"$SUDO"apt update
 else
-	sudo pacman -Syy
+	"$SUDO"pacman -Syy
 fi
 
 echo "\nInstalling global dependencies...\n"
 if [[ "$DISTRO_BASE" = "debian" ]]; then
-	sudo apt install -y "$DEPS"
+	"$SUDO"apt install -y "$DEPS"
 else
-	sudo pacman -Sy "$DEPS"
+	"$SUDO"pacman -Sy "$DEPS"
 fi
 
 if [[ ! "$(groups)" = *"docker"* ]]; then
 	# docs here: https://docs.docker.com/engine/install/linux-postinstall/
 	echo "\nEnabling user to run docker without sudo (first time only)...\n"
-	sudo groupadd docker
-	sudo usermod -aG docker $USER
+	"$SUDO"groupadd docker
+	"$SUDO"usermod -aG docker $USER
 	newgrp docker
 fi
 
