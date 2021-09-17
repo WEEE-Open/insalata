@@ -47,7 +47,7 @@ function rm_x_dir() {
 	[[ -d "$1" ]] && rm -rf "$1"
 }
 
-echo -e "Installing T.A.R.A.L.L.O (Tuttofare Assistente il Riuso di Aggeggi Logori e Localmente Opprimenti)...\n"
+echo -e "\nInstalling T.A.R.A.L.L.O (Tuttofare Assistente il Riuso di Aggeggi Logori e Localmente Opprimenti)...\n"
 rm_x_dir tarallo
 git clone "$GH_URL"tarallo
 cd tarallo || git_error
@@ -56,9 +56,9 @@ make up
 make examples
 cd ..
 xdg-open "$TARALLO_URL"
-echo -e "T.A.R.A.L.L.O. was successfully installed!\nIt is available at $TARALLO_URL\nYou can shut it down from this directory with: docker-compose down\n"
+echo -e "\nT.A.R.A.L.L.O. was successfully installed!\nIt is available at $TARALLO_URL\nYou can shut it down from this directory with: docker-compose down\n"
 
-echo -e "Installing WEEEhire-ng...\n"
+echo -e "\nInstalling WEEEhire-ng...\n"
 rm_x_dir weeehire-ng
 git clone "$GH_URL"weeehire-ng
 cd weeehire-ng || git_error
@@ -67,9 +67,9 @@ cp config/config-example.php config/config.php
 docker-compose up -d
 cd ..
 xdg-open "$WEEEHIRE_URL"
-echo -e "WEEEhire-ng was successfully installed!\nIt is available at $WEEEHIRE_URL\nYou can shut it down from this directory with: docker-compose down\n"
+echo -e "\nWEEEhire-ng was successfully installed!\nIt is available at $WEEEHIRE_URL\nYou can shut it down from this directory with: docker-compose down\n"
 
-echo -e "Installing P.E.R.A.C.O.T.T.A. (Progetto Esteso Raccolta Automatica Configurazioni hardware Organizzate Tramite Tarallo Autonomamente)...\n"
+echo -e "\nInstalling P.E.R.A.C.O.T.T.A. (Progetto Esteso Raccolta Automatica Configurazioni hardware Organizzate Tramite Tarallo Autonomamente)...\n"
 rm_x_dir peracotta
 git clone "$GH_URL"peracotta
 cd peracotta || git_error
@@ -79,9 +79,9 @@ pip install -r requirements.txt
 python main.py --gui
 deactivate
 cd ..
-echo -e "P.E.R.A.C.O.T.T.A. was successfully installed!\n"
+echo -e "\nP.E.R.A.C.O.T.T.A. was successfully installed!\n"
 
-echo -e "Installing P.E.S.T.O. (Progetto di Erase Smart con Taralli Olistici)...\n"
+echo -e "\nInstalling P.E.S.T.O. (Progetto di Erase Smart con Taralli Olistici)...\n"
 rm_x_dir pesto
 git clone "$GH_URL"pesto
 cd pesto || git_error
@@ -92,9 +92,9 @@ pip install -r requirements_server.txt
 python pinolo.py
 deactivate
 cd ..
-echo -e "P.E.S.T.O. successfully installed!\n"
+echo -e "\nP.E.S.T.O. successfully installed!\n"
 
-echo -e "Installing S.A.R.D.I.N.A. (Statistiche Amabili Rendimento Degli Informatici Nell’Anno)...\n"
+echo -e "\nInstalling S.A.R.D.I.N.A. (Statistiche Amabili Rendimento Degli Informatici Nell’Anno)...\n"
 rm_x_dir sardina
 git clone "$GH_URL"sardina
 cd sardina || git_error
@@ -104,5 +104,5 @@ sed -i 's/keep_repos = False/keep_repos = True/g' config.py
 # run S.A.R.D.I.N.A. in a new terminal window
 xterm python main.py --cloc --commits --sloc --graphs --lang
 cd ..
-echo -e "S.A.R.D.I.N.A. was successfully installed!\nYou can also run it with: docker run --rm -v $PWD/output:/sardina/output\n"
+echo -e "\nS.A.R.D.I.N.A. was successfully installed!\nYou can also run it with: docker run --rm -v $PWD/output:/sardina/output\n"
 
