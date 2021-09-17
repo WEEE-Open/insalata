@@ -2,10 +2,10 @@
 
 set -eu
 
-[[ "$OSTYPE" = "linux"* ]] || echo "This script must be run on GNU/Linux. Aborting..." || exit 1
+[[ "$OSTYPE" = "linux"* ]] || echo -e "\nThis script must be run on GNU/Linux. Aborting...\n" || exit 1
 
 read -p "This script will install all the demo software of team WEEE Open with its necessary dependencies. Do you want to proceed? [y/N] " PROCEED
-[[ "$PROCEED" = "y" || "$PROCEED" = "Y" ]] || echo "Aborting..." || exit 0
+[[ "$PROCEED" = "y" || "$PROCEED" = "Y" ]] || echo -e "\nAborting...\n" || exit 0
 
 # Arch vs Debian -based detection
 [[ -f /etc/debian_version ]] && DISTRO_BASE="debian" || DISTRO_BASE="arch"
@@ -14,19 +14,15 @@ GH_URL="https://github.com/weee-open/"
 DEPS="git make docker.io docker-compose pciutils i2c-tools mesa-utils smartmontools dmidecode python3 python3-venv cloc"
 TARALLO_URL="http://localhost:80"
 WEEEHIRE_URL="http://localhost:8777"
-# enable interpretation of backslash sequences
-function echo() {
-	echo -e "$@"
-}
 
-echo "\nUpdating local repos...\n"
+echo -e "\nUpdating local repos...\n"
 if [[ "$DISTRO_BASE" = "debian" ]]; then 
 	$SUDO apt update || true
 else
 	$SUDO pacman -Syy || true
 fi
 
-echo "\nInstalling global dependencies...\n"
+echo -e "\nInstalling global dependencies...\n"
 if [[ "$DISTRO_BASE" = "debian" ]]; then
 	$SUDO apt install -y $DEPS
 else
@@ -35,14 +31,14 @@ fi
 
 if [[ ! "$(groups)" = *"docker"* ]]; then
 	# docs here: https://docs.docker.com/engine/install/linux-postinstall/
-	echo "\nEnabling user to run docker without sudo (first time only)...\n"
+	echo -e "\nEnabling user to run docker without sudo (first time only)...\n"
 	# $SUDO groupadd docker || true
 	[[ $EUID != 0 ]] && $SUDO usermod -aG docker $USER
 	newgrp docker
 fi
 
 function git_error() {
-	echo "There was an error with git clone, aborting..."
+	echo -e "\nThere was an error with git clone, aborting...\n"
 	exit 2
 }
 
@@ -51,7 +47,7 @@ function rm_x_dir() {
 	[[ -d "$1" ]] && rm -rf "$1"
 }
 
-echo "Installing T.A.R.A.L.L.O (Tuttofare Assistente il Riuso di Aggeggi Logori e Localmente Opprimenti)...\n"
+echo -e "Installing T.A.R.A.L.L.O (Tuttofare Assistente il Riuso di Aggeggi Logori e Localmente Opprimenti)...\n"
 rm_x_dir tarallo
 git clone "$GH_URL"tarallo
 cd tarallo || git_error
@@ -60,9 +56,9 @@ make up
 make examples
 cd ..
 xdg-open "$TARALLO_URL"
-echo "T.A.R.A.L.L.O. was successfully installed!\nIt is available at $TARALLO_URL\nYou can shut it down from this directory with: docker-compose down\n"
+echo -e "T.A.R.A.L.L.O. was successfully installed!\nIt is available at $TARALLO_URL\nYou can shut it down from this directory with: docker-compose down\n"
 
-echo "Installing WEEEhire-ng...\n"
+echo -e "Installing WEEEhire-ng...\n"
 rm_x_dir weeehire-ng
 git clone "$GH_URL"weeehire-ng
 cd weeehire-ng || git_error
@@ -71,9 +67,9 @@ cp config/config-example.php config/config.php
 docker-compose up -d
 cd ..
 xdg-open "$WEEEHIRE_URL"
-echo "WEEEhire-ng was successfully installed!\nIt is available at $WEEEHIRE_URL\nYou can shut it down from this directory with: docker-compose down\n"
+echo -e "WEEEhire-ng was successfully installed!\nIt is available at $WEEEHIRE_URL\nYou can shut it down from this directory with: docker-compose down\n"
 
-echo "Installing P.E.R.A.C.O.T.T.A. (Progetto Esteso Raccolta Automatica Configurazioni hardware Organizzate Tramite Tarallo Autonomamente)...\n"
+echo -e "Installing P.E.R.A.C.O.T.T.A. (Progetto Esteso Raccolta Automatica Configurazioni hardware Organizzate Tramite Tarallo Autonomamente)...\n"
 rm_x_dir peracotta
 git clone "$GH_URL"peracotta
 cd peracotta || git_error
@@ -83,9 +79,9 @@ pip install -r requirements.txt
 python main.py --gui
 deactivate
 cd ..
-echo "P.E.R.A.C.O.T.T.A. was successfully installed!\n"
+echo -e "P.E.R.A.C.O.T.T.A. was successfully installed!\n"
 
-echo "Installing P.E.S.T.O. (Progetto di Erase Smart con Taralli Olistici)...\n"
+echo -e "Installing P.E.S.T.O. (Progetto di Erase Smart con Taralli Olistici)...\n"
 rm_x_dir pesto
 git clone "$GH_URL"pesto
 cd pesto || git_error
@@ -96,9 +92,9 @@ pip install -r requirements_server.txt
 python pinolo.py
 deactivate
 cd ..
-echo "P.E.S.T.O. successfully installed!\n"
+echo -e "P.E.S.T.O. successfully installed!\n"
 
-echo "Installing S.A.R.D.I.N.A. (Statistiche Amabili Rendimento Degli Informatici Nell’Anno)...\n"
+echo -e "Installing S.A.R.D.I.N.A. (Statistiche Amabili Rendimento Degli Informatici Nell’Anno)...\n"
 rm_x_dir sardina
 git clone "$GH_URL"sardina
 cd sardina || git_error
@@ -108,5 +104,5 @@ sed -i 's/keep_repos = False/keep_repos = True/g' config.py
 # run S.A.R.D.I.N.A. in a new terminal window
 xterm python main.py --cloc --commits --sloc --graphs --lang
 cd ..
-echo "S.A.R.D.I.N.A. was successfully installed!\nYou can also run it with: docker run --rm -v $PWD/output:/sardina/output\n"
+echo -e "S.A.R.D.I.N.A. was successfully installed!\nYou can also run it with: docker run --rm -v $PWD/output:/sardina/output\n"
 
