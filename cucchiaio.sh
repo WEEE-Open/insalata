@@ -24,9 +24,9 @@ fi
 
 echo "\nInstalling global dependencies...\n"
 if [[ "$DISTRO_BASE" = "debian" ]]; then
-	"$SUDO"apt install -y "$DEPS"
+	"$SUDO"apt install -y $DEPS
 else
-	"$SUDO"pacman -Sy "$DEPS"
+	"$SUDO"pacman -Sy $DEPS
 fi
 
 if [[ ! "$(groups)" = *"docker"* ]]; then
