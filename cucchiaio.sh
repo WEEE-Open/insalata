@@ -2,10 +2,10 @@
 
 set -eu
 
-[[ "$OSTYPE" = "linux"* ]] || echo "This script must be run on GNU/Linux. Aborting..."; exit 1
+[[ "$OSTYPE" = "linux"* ]] || echo "This script must be run on GNU/Linux. Aborting..." || exit 1
 
 read -p "This script will install all the demo software of team WEEE Open with its necessary dependencies. Do you want to proceed? [y/N] " PROCEED
-[[ "$PROCEED" = "y" || "$PROCEED" = "Y" ]] || echo "Aborting..."; exit 0
+[[ "$PROCEED" = "y" || "$PROCEED" = "Y" ]] || echo "Aborting..." || exit 0
 
 # Arch vs Debian -based detection
 [[ -f /etc/debian_version ]] && DISTRO_BASE="debian" || DISTRO_BASE="arch"
@@ -15,10 +15,18 @@ TARALLO_URL="http://localhost:80"
 WEEEHIRE_URL="http://localhost:8777"
 
 echo "\nUpdating local repos...\n"
-[[ "$DISTRO_BASE" = "debian" ]] && sudo apt update || sudo pacman -Syy
+if [[ "$DISTRO_BASE" = "debian" ]]; then 
+	sudo apt update
+else
+	sudo pacman -Syy
+fi
 
 echo "\nInstalling global dependencies...\n"
-[[ "$DISTRO_BASE" = "debian" ]] && sudo apt install -y "$DEPS" || sudo pacman -Sy "$DEPS"
+if [[ "$DISTRO_BASE" = "debian" ]]; then
+	sudo apt install -y "$DEPS"
+else
+	sudo pacman -Sy "$DEPS"
+fi
 
 if [[ ! "$(groups)" = *"docker"* ]]; then
 	# docs here: https://docs.docker.com/engine/install/linux-postinstall/
@@ -86,3 +94,4 @@ sed -i 's/keep_repos = False/keep_repos = True/g' config.py
 xterm python main.py --cloc --commits --sloc --graphs --lang
 cd ..
 echo "S.A.R.D.I.N.A. was successfully installed!\nYou can also run it with: docker run --rm -v $PWD/output:/sardina/output\n"
+
