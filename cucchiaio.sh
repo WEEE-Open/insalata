@@ -86,10 +86,10 @@ source venv/bin/activate
 prep_venv
 pip install -r requirements.txt
 cp .env.example .env
-python main.py --gui
-deactivate
+xterm -hold -e "python main.py --gui; bash" &
+#deactivate
 cd ..
-echo -e "\nP.E.R.A.C.O.T.T.A. was successfully installed!\nYou can run it from $PWD/peracotta with: python main.py --gui\n"
+echo -e "\nP.E.R.A.C.O.T.T.A. was successfully installed!\nYou can run it from $PWD/peracotta in the new xterm window with: python main.py --gui\n"
 
 echo -e "\nInstalling P.E.S.T.O. (Progetto di Erase Smart con Taralli Olistici)...\n"
 rm_x_dir pesto
