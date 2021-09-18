@@ -25,6 +25,11 @@ fi
 echo -e "\nInstalling global dependencies...\n"
 if [[ "$DISTRO_BASE" = "debian" ]]; then
 	$SUDO apt install -y $DEPS
+	# fix for libxcb libraries not found when launching P.E.S.T.O. on Debian
+	sudo apt install libxcb-util0-dev libxcb-xinerama0-dev
+	wget http://ftp.br.debian.org/debian/pool/main/x/xcb-util/libxcb-util1_0.4.0-1+b1_amd64.deb
+	sudo dpkg -i libxcb-util1_0.4.0-1+b1_amd64.deb
+	rm libxcb-util1_0.4.0-1+b1_amd64.deb
 else
 	$SUDO pacman -Sy $DEPS
 fi
