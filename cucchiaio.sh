@@ -37,6 +37,9 @@ if [[ ! "$(groups)" = *"docker"* ]]; then
 	newgrp docker
 fi
 
+echo -e "\nUpdating pip3...\n"
+pip3 install --upgrade pip
+
 function git_error() {
 	echo -e "\nThere was an error with git clone, aborting...\n"
 	exit 2
