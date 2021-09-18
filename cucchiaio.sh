@@ -52,6 +52,7 @@ function rm_x_dir() {
 
 # these packages need to be up-to-date before installing Python dependencies
 function prep_venv() {
+	pip install setuptools wheel
 	pip install --upgrade pip setuptools wheel
 }
 
