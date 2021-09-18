@@ -100,7 +100,7 @@ source venv/bin/activate
 prep_venv
 pip install -r requirements.txt
 cp .env.example .env
-xterm -hold -e "python main.py --gui; bash" &
+xterm -hold -title "P.E.R.A.C.O.T.T.A." -e "python main.py --gui; bash" &
 #deactivate
 cd ..
 echo -e "\nP.E.R.A.C.O.T.T.A. was successfully installed!\nYou can run it from $PWD/peracotta in the new xterm window with: python main.py --gui\n"
@@ -114,7 +114,7 @@ source venv/bin/activate
 prep_venv
 pip install -r requirements_client.txt
 pip install -r requirements_server.txt
-xterm -hold -e "python pinolo.py; bash" &
+xterm -hold -title "P.E.S.T.O." -e "python pinolo.py; bash" &
 #deactivate
 cd ..
 echo -e "\nP.E.S.T.O. successfully installed!\nYou can run it from $PWD/pesto with: python pinolo.py\n"
@@ -127,7 +127,7 @@ prep_venv
 pip install -r requirements.txt
 sed -i 's/dev_mode = False/dev_mode = True/g' config.py
 sed -i 's/keep_repos = False/keep_repos = True/g' config.py
-xterm -hold -e "docker run --rm -v \$PWD/output:/sardina/output -it docker.caste.dev/sardina; xdg-open output; bash" &
+xterm -hold -title "S.A.R.D.I.N.A." -e "docker run --rm -v \$PWD/output:/sardina/output -it docker.caste.dev/sardina; xdg-open output; bash" &
 #deactivate
 cd ..
 echo -e "\nS.A.R.D.I.N.A. was successfully installed!\nYou can run it from $PWD/sardina with: docker run --rm -v \$PWD/output:/sardina/output -it docker.caste.dev/sardina\nYou can also run it with: python main.py --cloc --commits --sloc --graphs --lang\n"
