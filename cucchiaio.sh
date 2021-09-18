@@ -42,7 +42,7 @@ if [[ ! "$(groups)" = *"docker"* ]]; then
 	newgrp docker
 fi
 
-echo "\nLogin into our docker registry (first time only)...\n"
+echo -e "\nLogin into our docker registry (first time only)...\n"
 docker login docker.caste.dev
 
 echo -e "\nUpdating pip3...\n"
