@@ -15,6 +15,7 @@ read -p "This script will install all the demo software of team WEEE Open with i
 [[ $EUID = 0 ]] && SUDO="" || SUDO="sudo"
 GH_URL="https://github.com/weee-open/"
 DEPS="git make docker.io docker-compose pciutils i2c-tools mesa-utils smartmontools dmidecode python3 python3-venv cloc sqlite3 xterm gnupg2 pass wget"
+NEW_GRP=0
 TARALLO_URL="http://localhost:8080"
 WEEEHIRE_URL="http://localhost:80"
 
@@ -47,7 +48,8 @@ if [[ ! "$(groups)" = *"docker"* ]]; then
 	echo -e "\nEnabling user to run docker without sudo (first time only)...\n"
 	# $SUDO groupadd docker || true
 	[[ $EUID != 0 ]] && $SUDO usermod -aG docker $USER || true
-	newgrp docker &
+	newgrp docker << END
+	NEW_GRP=1
 fi
 
 echo -e "\nLogin into our docker registry (first time only)...\n"
@@ -135,4 +137,10 @@ xterm -hold -title "S.A.R.D.I.N.A." -e "docker run --rm -v \$PWD/output:/sardina
 #deactivate
 cd ..
 echo -e "\nS.A.R.D.I.N.A. was successfully installed!\nYou can run it from $PWD/sardina with: docker run --rm -v \$PWD/output:/sardina/output -it docker.caste.dev/sardina\nYou can also run it with: python main.py --cloc --commits --sloc --graphs --lang\n"
+
+if [[ $NEW_GRP = 1 ]]; then
+	END
+	newgroup docker
+fi
+
 
