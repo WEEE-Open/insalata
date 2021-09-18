@@ -75,7 +75,7 @@ cp config/config-example.php config/config.php
 docker-compose up -d
 cd ..
 xdg-open "$WEEEHIRE_URL"
-echo -e "\nWEEEhire-ng was successfully installed!\nIt is available at $WEEEHIRE_URL\nYou can shut it down from $PWD/weeehire-ng with: make down\n"
+echo -e "\nWEEEhire-ng was successfully installed!\nIt is available at $WEEEHIRE_URL\nYou can shut it down from $PWD/weeehire-ng with: docker-compose down\n"
 
 echo -e "\nInstalling P.E.R.A.C.O.T.T.A. (Progetto Esteso Raccolta Automatica Configurazioni hardware Organizzate Tramite Tarallo Autonomamente)...\n"
 rm_x_dir peracotta
