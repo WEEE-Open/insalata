@@ -106,7 +106,7 @@ source venv/bin/activate
 prep_venv
 pip install -r requirements_client.txt
 pip install -r requirements_server.txt
-python pinolo.py
+xterm -hold -e "python pinolo.py; bash" &
 deactivate
 cd ..
 echo -e "\nP.E.S.T.O. successfully installed!\nYou can run it from $PWD/pesto with: python pinolo.py\n"
