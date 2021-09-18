@@ -75,6 +75,7 @@ git clone "$GH_URL"peracotta
 cd peracotta || git_error
 python3 -m venv venv
 source venv/bin/activate
+pip install wheel
 pip install -r requirements.txt
 python main.py --gui
 deactivate
@@ -87,6 +88,7 @@ git clone "$GH_URL"pesto
 cd pesto || git_error
 python3 -m venv venv
 source venv/bin/activate
+pip install wheel
 pip install -r requirements_client.txt
 pip install -r requirements_server.txt
 python pinolo.py
@@ -98,6 +100,7 @@ echo -e "\nInstalling S.A.R.D.I.N.A. (Statistiche Amabili Rendimento Degli Infor
 rm_x_dir sardina
 git clone "$GH_URL"sardina
 cd sardina || git_error
+pip install wheel
 pip install -r requirements.txt
 sed -i 's/dev_mode = False/dev_mode = True/g' config.py
 sed -i 's/keep_repos = False/keep_repos = True/g' config.py
