@@ -28,12 +28,15 @@ fi
 read -p "Terminate all xterm processes? [y/N] " PROCEED
 if [[ "$PROCEED" = "y" || "$PROCEED" = "Y" ]]; then
 	echo -e "Terminating all xterm processes...\n"
-	sudo killall xterm || true
+	sudo killall xterm &> /dev/null || true
 else
 	echo -e "Skipping xterm termination...\n"
 fi
 
 for DIR in tarallo weeehire-ng peracotta pesto sardina; do
+	echo -e "Removing $DIR directory...\n"
 	rm_x_dir $DIR
 done
+
+echo -e "\nTeardown complete!\n"
 
