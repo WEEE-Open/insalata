@@ -15,7 +15,6 @@ read -p "This script will install all the demo software of team WEEE Open with i
 [[ $EUID = 0 ]] && SUDO="" || SUDO="sudo"
 GH_URL="https://github.com/weee-open/"
 DEPS="git make docker.io docker-compose pciutils i2c-tools mesa-utils smartmontools dmidecode python3 python3-venv cloc sqlite3 xterm gnupg2 pass wget"
-NEW_GRP=0
 TARALLO_URL="http://localhost:8080"
 WEEEHIRE_URL="http://localhost:80"
 
@@ -49,10 +48,6 @@ if [[ ! "$(groups)" = *"docker"* ]]; then
 	echo -e "\nEnabling user to run docker without sudo (first time only)...\n"
 	$SUDO chgrp docker $(which docker)
 	$SUDO chmod g+s $(which docker)
-	# $SUDO groupadd docker || true
-	#[[ $EUID != 0 ]] && $SUDO usermod -aG docker $USER || true
-	#newgrp docker
-	#NEW_GRP=1
 fi
 
 echo -e "\nLogin into our docker registry (first time only)...\n"
