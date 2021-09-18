@@ -125,6 +125,7 @@ git clone "$GH_URL"sardina
 cd sardina || git_error
 prep_venv
 pip install -r requirements.txt
+# the docker container uses a different config.py with the needed PAT, these changes could be useful if run without docker
 sed -i 's/dev_mode = False/dev_mode = True/g' config.py
 sed -i 's/keep_repos = False/keep_repos = True/g' config.py
 xterm -hold -title "S.A.R.D.I.N.A." -e "docker run --rm -v \$PWD/output:/sardina/output -it docker.caste.dev/sardina; sudo chown -R \$USER .; xdg-open output; bash" &
