@@ -28,7 +28,7 @@ if [[ "$DISTRO_BASE" = "debian" ]]; then
 	# fix for libxcb libraries not found when launching P.E.S.T.O. on Debian
 	sudo apt install libxcb-util0-dev libxcb-xinerama0-dev
 	if ! sudo apt list --installed | grep libxcb-util1; then
-		if wget http://ftp.br.debian.org/debian/pool/main/x/xcb-util/libxcb-util1_0.4.0-1+b1_amd64.deb;
+		if wget http://ftp.br.debian.org/debian/pool/main/x/xcb-util/libxcb-util1_0.4.0-1+b1_amd64.deb; then
 			sudo dpkg -i libxcb-util1_0.4.0-1+b1_amd64.deb 
 			rm libxcb-util1_0.4.0-1+b1_amd64.deb
 		else
