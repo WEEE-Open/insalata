@@ -85,6 +85,7 @@ python3 -m venv venv
 source venv/bin/activate
 prep_venv
 pip install -r requirements.txt
+cp .env.example .env
 python main.py --gui
 deactivate
 cd ..
