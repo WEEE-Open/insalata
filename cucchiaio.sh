@@ -44,10 +44,12 @@ fi
 
 if [[ ! "$(groups)" = *"docker"* ]]; then
 	# docs here: https://docs.docker.com/engine/install/linux-postinstall/
-	# but we want to immediately have access to docker without sudo, so: https://stackoverflow.com/a/63311331
-	echo -e "\nEnabling user to run docker without sudo (first time only)...\n"
-	$SUDO chgrp docker $(which docker)
-	$SUDO chmod g+s $(which docker)
+	# NO: but we want to immediately have access to docker without sudo, so: https://stackoverflow.com/a/63311331
+	echo -e "\nEnabling user to run docker without sudo (first time only)...\nPlease re-run this script to complete the start-up process, a user cannot be added to a new group inside a script.\n"
+	$SUDO usermod -aG docker $USER
+	newgrp docker
+	#$SUDO chgrp docker $(which docker)
+	#$SUDO chmod g+s $(which docker)
 fi
 
 echo -e "\nLogin into our docker registry (first time only)...\n"
