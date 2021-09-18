@@ -45,11 +45,14 @@ fi
 
 if [[ ! "$(groups)" = *"docker"* ]]; then
 	# docs here: https://docs.docker.com/engine/install/linux-postinstall/
+	# but we want to immediately have access to docker without sudo, so: https://stackoverflow.com/a/63311331
 	echo -e "\nEnabling user to run docker without sudo (first time only)...\n"
+	$SUDO chgrp docker $(which docker)
+	$SUDO chmod g+s $(which docker)
 	# $SUDO groupadd docker || true
-	[[ $EUID != 0 ]] && $SUDO usermod -aG docker $USER || true
-	newgrp docker << END
-	NEW_GRP=1
+	#[[ $EUID != 0 ]] && $SUDO usermod -aG docker $USER || true
+	#newgrp docker
+	#NEW_GRP=1
 fi
 
 echo -e "\nLogin into our docker registry (first time only)...\n"
@@ -137,10 +140,5 @@ xterm -hold -title "S.A.R.D.I.N.A." -e "docker run --rm -v \$PWD/output:/sardina
 #deactivate
 cd ..
 echo -e "\nS.A.R.D.I.N.A. was successfully installed!\nYou can run it from $PWD/sardina with: docker run --rm -v \$PWD/output:/sardina/output -it docker.caste.dev/sardina\nYou can also run it with: python main.py --cloc --commits --sloc --graphs --lang\n"
-
-if [[ $NEW_GRP = 1 ]]; then
-	END
-	newgroup docker
-fi
 
 
