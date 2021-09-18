@@ -119,8 +119,8 @@ prep_venv
 pip install -r requirements.txt
 sed -i 's/dev_mode = False/dev_mode = True/g' config.py
 sed -i 's/keep_repos = False/keep_repos = True/g' config.py
-# run S.A.R.D.I.N.A. in a new terminal window
-xterm python main.py --cloc --commits --sloc --graphs --lang
+xterm -hold -e "python main.py --cloc --commits --sloc --graphs --lang; bash" &
+#deactivate
 cd ..
 echo -e "\nS.A.R.D.I.N.A. was successfully installed!\nYou can run it from $PWD/sardina with: python main.py --cloc --commits --sloc --graphs --lang\nYou can also run it with: docker run --rm -v \$PWD/output:/sardina/output\n"
 
