@@ -33,7 +33,7 @@ if [[ ! "$(groups)" = *"docker"* ]]; then
 	# docs here: https://docs.docker.com/engine/install/linux-postinstall/
 	echo -e "\nEnabling user to run docker without sudo (first time only)...\n"
 	# $SUDO groupadd docker || true
-	[[ $EUID != 0 ]] && $SUDO usermod -aG docker $USER
+	[[ $EUID != 0 ]] && $SUDO usermod -aG docker $USER || true
 	newgrp docker
 fi
 
