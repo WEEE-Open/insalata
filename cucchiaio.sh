@@ -127,7 +127,7 @@ prep_venv
 pip install -r requirements.txt
 sed -i 's/dev_mode = False/dev_mode = True/g' config.py
 sed -i 's/keep_repos = False/keep_repos = True/g' config.py
-xterm -hold -e "docker run --rm -v \$PWD/output:/sardina/output -it docker.caste.dev/sardina; bash" &
+xterm -hold -e "docker run --rm -v \$PWD/output:/sardina/output -it docker.caste.dev/sardina; xdg-open output; bash" &
 #deactivate
 cd ..
 echo -e "\nS.A.R.D.I.N.A. was successfully installed!\nYou can run it from $PWD/sardina with: docker run --rm -v \$PWD/output:/sardina/output -it docker.caste.dev/sardina\nYou can also run it with: python main.py --cloc --commits --sloc --graphs --lang\n"
