@@ -50,6 +50,11 @@ function rm_x_dir() {
 	[[ -d "$1" ]] && rm -rf "$1" || true  # true needed to keep running if dir does not exist
 }
 
+# these packages need to be up-to-date before installing Python dependencies
+function prep_venv() {
+	pip install --upgrade pip setuptools wheel
+}
+
 echo -e "\nInstalling T.A.R.A.L.L.O (Tuttofare Assistente il Riuso di Aggeggi Logori e Localmente Opprimenti)...\n"
 rm_x_dir tarallo
 git clone "$GH_URL"tarallo
@@ -78,7 +83,7 @@ git clone "$GH_URL"peracotta
 cd peracotta || git_error
 python3 -m venv venv
 source venv/bin/activate
-pip install wheel
+prep_venv
 pip install -r requirements.txt
 python main.py --gui
 deactivate
@@ -91,7 +96,7 @@ git clone "$GH_URL"pesto
 cd pesto || git_error
 python3 -m venv venv
 source venv/bin/activate
-pip install wheel
+prep_venv
 pip install -r requirements_client.txt
 pip install -r requirements_server.txt
 python pinolo.py
@@ -103,7 +108,7 @@ echo -e "\nInstalling S.A.R.D.I.N.A. (Statistiche Amabili Rendimento Degli Infor
 rm_x_dir sardina
 git clone "$GH_URL"sardina
 cd sardina || git_error
-pip install wheel
+prep_venv
 pip install -r requirements.txt
 sed -i 's/dev_mode = False/dev_mode = True/g' config.py
 sed -i 's/keep_repos = False/keep_repos = True/g' config.py
