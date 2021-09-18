@@ -2,7 +2,10 @@
 
 set -eu
 
-[[ "$OSTYPE" = "linux"* ]] || echo -e "\nThis script must be run on GNU/Linux. Aborting...\n" || exit 1
+if [[ ! "$OSTYPE" = "linux"* ]]; then
+	echo -e "\nThis script must be run on GNU/Linux. Aborting...\n"
+	exit 1
+fi
 
 read -p "This script will install all the demo software of team WEEE Open with its necessary dependencies. Do you want to proceed? [y/N] " PROCEED
 [[ "$PROCEED" = "y" || "$PROCEED" = "Y" ]] || echo -e "\nAborting...\n" || exit 0
