@@ -13,7 +13,7 @@ read -p "This script will install all the demo software of team WEEE Open with i
 GH_URL="https://github.com/weee-open/"
 DEPS="git make docker.io docker-compose pciutils i2c-tools mesa-utils smartmontools dmidecode python3 python3-venv cloc sqlite3"
 TARALLO_URL="http://localhost:8080"
-WEEEHIRE_URL="http://localhost:8777"
+WEEEHIRE_URL="http://localhost:80"
 
 echo -e "\nUpdating local repos...\n"
 if [[ "$DISTRO_BASE" = "debian" ]]; then 
