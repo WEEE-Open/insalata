@@ -28,7 +28,7 @@ fi
 read -p "Terminate all xterm processes? [y/N] " PROCEED
 if [[ "$PROCEED" = "y" || "$PROCEED" = "Y" ]]; then
 	echo -e "Terminating all xterm processes...\n"
-	sudo killall xterm
+	sudo killall xterm || true
 else
 	echo -e "Skipping xterm termination...\n"
 fi
