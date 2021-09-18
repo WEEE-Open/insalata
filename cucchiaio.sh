@@ -11,7 +11,7 @@ read -p "This script will install all the demo software of team WEEE Open with i
 [[ -f /etc/debian_version ]] && DISTRO_BASE="debian" || DISTRO_BASE="arch"
 [[ $EUID = 0 ]] && SUDO="" || SUDO="sudo"
 GH_URL="https://github.com/weee-open/"
-DEPS="git make docker.io docker-compose pciutils i2c-tools mesa-utils smartmontools dmidecode python3 python3-venv cloc sqlite3 xterm"
+DEPS="git make docker.io docker-compose pciutils i2c-tools mesa-utils smartmontools dmidecode python3 python3-venv cloc sqlite3 xterm gnupg2 pass"
 TARALLO_URL="http://localhost:8080"
 WEEEHIRE_URL="http://localhost:80"
 
