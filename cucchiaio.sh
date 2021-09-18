@@ -47,7 +47,7 @@ if [[ ! "$(groups)" = *"docker"* ]]; then
 	echo -e "\nEnabling user to run docker without sudo (first time only)...\n"
 	# $SUDO groupadd docker || true
 	[[ $EUID != 0 ]] && $SUDO usermod -aG docker $USER || true
-	newgrp docker
+	newgrp docker &
 fi
 
 echo -e "\nLogin into our docker registry (first time only)...\n"
