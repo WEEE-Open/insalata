@@ -141,4 +141,6 @@ xterm -hold -title "S.A.R.D.I.N.A." -e "docker run --rm -v \$PWD/output:/sardina
 cd ..
 echo -e "\nS.A.R.D.I.N.A. was successfully installed!\nYou can run it from $PWD/sardina with: docker run --rm -v \$PWD/output:/sardina/output -it docker.caste.dev/sardina\nYou can also run it with: python main.py --cloc --commits --sloc --graphs --lang\n"
 
+echo -e "\nOpening WEEE Open's GitHub page in the browser...\n"
+xdg-open "$GH_URL"
 
