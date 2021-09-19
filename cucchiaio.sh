@@ -8,7 +8,10 @@ if [[ ! "$OSTYPE" = "linux"* ]]; then
 fi
 
 read -p "This script will install all the demo software of team WEEE Open with its necessary dependencies. Do you want to proceed? [y/N] " PROCEED
-[[ "$PROCEED" = "y" || "$PROCEED" = "Y" ]] || echo -e "\nAborting...\n" || exit 0
+if [[ "$PROCEED" = "y" || "$PROCEED" = "Y" ]]; then
+	echo -e "\nAborting...\n"
+	exit 0
+fi
 
 # Arch vs Debian -based detection
 [[ -f /etc/debian_version ]] && DISTRO_BASE="debian" || DISTRO_BASE="arch"
