@@ -37,7 +37,7 @@ else
 fi
 
 for DIR in tarallo weeehire-ng peracotta pesto sardina; do
-	echo -e "Removing $DIR directory...\n"
+	echo -e "Removing $DIR directory..."
 	rm_x_dir $DIR
 done
 
