@@ -8,7 +8,10 @@ function rm_x_dir() {
 }
 
 read -p "Do you want to tear down and clean up everything in this directory? [y/N] " PROCEED
-[[ "$PROCEED" = "y" || "$PROCEED" = "Y" ]] || echo -e "\nAborting...\n" || exit 0
+if [[ "$PROCEED" = "y" || "$PROCEED" = "Y" ]];then 
+	echo -e "\nAborting...\n"
+	exit 0
+fi
 
 if [[ -d tarallo ]]; then
 	cd tarallo
