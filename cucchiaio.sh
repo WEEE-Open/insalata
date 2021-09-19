@@ -122,7 +122,7 @@ source venv/bin/activate
 prep_venv
 pip install -r requirements_client.txt
 pip install -r requirements_server.txt
-xterm -hold -title "P.E.S.T.O." -e "python pinolo.py; bash" &
+xterm -hold -title "P.E.S.T.O." -e "python basilico.py & sleep 5 && python pinolo.py; bash" &
 #deactivate
 cd ..
 echo -e "\nP.E.S.T.O. successfully installed!\nYou can run it from $PWD/pesto with: python pinolo.py\n"
