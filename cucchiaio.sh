@@ -92,6 +92,7 @@ function setup_cd_dir() {
 		return 0
 	else
 		cd "$1" &> /dev/null || return 1
+		return 0
 	fi
 }
 
@@ -121,8 +122,8 @@ fi
 
 echo -e "\nInstalling WEEEhire-ng...\n"
 if setup_cd_dir weeehire-ng; then
-	sqlite3 weeehire.db < database.sql
-	cp config/config-example.php config/config.php
+	[[ ! -f weeehire.db ]] && sqlite3 weeehire.db < database.sql
+	[[ ! -f config/config.php ]] && cp config/config-example.php config/config.php
 	docker-compose up -d
 	cd ..
 	xdg-open "$WEEEHIRE_URL"
@@ -137,7 +138,7 @@ if setup_cd_dir peracotta; then
 	make_venv
 	[[ $INTERNET = 1 ]] && prep_venv
 	[[ $INTERNET = 1 ]] && pip install -r requirements.txt
-	cp .env.example .env
+	[[ ! -f .env ]] && cp .env.example .env
 	xterm -hold -title "P.E.R.A.C.O.T.T.A." -e "python main.py --gui; bash" &
 	#deactivate
 	cd ..
@@ -168,8 +169,8 @@ if setup_cd_dir sardina; then
 	[[ $INTERNET = 1 ]] && prep_venv
 	[[ $INTERNET = 1 ]] && pip install -r requirements.txt
 	# the docker container uses a different config.py with the needed PAT, these changes could be useful if run without docker
-	sed -i 's/dev_mode = False/dev_mode = True/g' config.py
-	sed -i 's/keep_repos = False/keep_repos = True/g' config.py
+	sed -i 's/dev_mode = False/dev_mode = True/g' config.py || true
+	sed -i 's/keep_repos = False/keep_repos = True/g' config.py || true
 	xterm -hold -title "S.A.R.D.I.N.A." -e "docker run --rm -v \$PWD/output:/sardina/output -it docker.caste.dev/sardina; sudo chown -R \$USER .; xdg-open output; bash" &
 	#deactivate
 	cd ..
