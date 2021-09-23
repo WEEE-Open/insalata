@@ -36,10 +36,13 @@ else
 	echo -e "Skipping xterm termination...\n"
 fi
 
-for DIR in tarallo weeehire-ng peracotta pesto sardina; do
-	echo -e "Removing $DIR directory..."
-	rm_x_dir $DIR
-done
+read -p "Clean up all repo directories? [y/N] " CLEANUP
+if [[ "$CLEANUP" = "y" || "$CLEANUP" = "Y" ]]; then
+	for DIR in tarallo weeehire-ng peracotta pesto sardina; do
+		echo -e "Removing $DIR directory..."
+		rm_x_dir $DIR
+	done
+fi
 
 echo -e "\nTeardown complete!\n"
 
