@@ -27,7 +27,7 @@ sleep 2  # to let the user acknowledge their choice
 [[ -f /etc/debian_version ]] && DISTRO_BASE="debian" || DISTRO_BASE="arch"
 [[ $EUID = 0 ]] && SUDO="" || SUDO="sudo"
 GH_URL="https://github.com/weee-open/"
-DEPS="git make docker.io docker-compose pciutils i2c-tools mesa-utils smartmontools dmidecode python3 python3-pip python3-venv cloc sqlite3 xterm gnupg2 pass wget"
+DEPS="git make docker.io docker-compose pciutils i2c-tools mesa-utils smartmontools dmidecode python3 python3-pip python3-venv cloc sqlite3 xterm gnupg2 pass wget htop vim"
 TARALLO_URL="http://localhost:8080"
 WEEEHIRE_URL="http://localhost:80"
 
