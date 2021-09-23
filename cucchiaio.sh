@@ -48,9 +48,9 @@ fi
 if [[ ! "$(groups)" = *"docker"* ]]; then
 	# docs here: https://docs.docker.com/engine/install/linux-postinstall/
 	# NO: but we want to immediately have access to docker without sudo, so: https://stackoverflow.com/a/63311331
-	echo -e "\nEnabling user to run docker without sudo (first time only)...\nPlease re-run this script to complete the start-up process, a user cannot be added to a new group inside a script.\n"
+	echo -e "\nEnabling user to run docker without sudo (first time only)...\nPLEASE LOGOUT AND LOG BACK IN, a user cannot be added to a new group inside a script.\n"
 	$SUDO usermod -aG docker $USER
-	newgrp docker
+	#newgrp docker  # this sets the current group list to ONLY docker, which is wrong
 	#$SUDO chgrp docker $(which docker)
 	#$SUDO chmod g+s $(which docker)
 fi
