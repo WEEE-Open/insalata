@@ -8,7 +8,7 @@ if [[ ! "$OSTYPE" = "linux"* ]]; then
 fi
 
 read -p "This script will install all the demo software of team WEEE Open with its necessary dependencies. Do you want to proceed? [y/N] " PROCEED
-if [[ "$PROCEED" = "y" || "$PROCEED" = "Y" ]]; then
+if ! [[ "$PROCEED" = "y" || "$PROCEED" = "Y" ]]; then
 	echo -e "\nAborting...\n"
 	exit 0
 fi
