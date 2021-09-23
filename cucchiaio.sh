@@ -86,7 +86,7 @@ function _rm_x_dir() {
 
 function setup_cd_dir() {
 	if [[ $INTERNET = 1 ]]; then
-		rm_x_dir "$1"
+		_rm_x_dir "$1"
 		git clone "$GH_URL$1"
 		cd "$1" || _git_error
 		return 0
