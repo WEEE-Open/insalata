@@ -91,7 +91,7 @@ function setup_cd_dir() {
 		cd "$1" || _git_error
 		return 0
 	else
-		cd "$1" || return 1
+		cd "$1" &> /dev/null || return 1
 	fi
 }
 
