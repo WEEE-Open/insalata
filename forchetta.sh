@@ -8,7 +8,7 @@ function rm_x_dir() {
 }
 
 read -p "Do you want to tear down and clean up everything in this directory? [y/N] " PROCEED
-if [[ "$PROCEED" = "y" || "$PROCEED" = "Y" ]];then 
+if ! [[ "$PROCEED" = "y" || "$PROCEED" = "Y" ]];then 
 	echo -e "\nAborting...\n"
 	exit 0
 fi
