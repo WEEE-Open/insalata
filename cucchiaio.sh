@@ -115,7 +115,7 @@ if setup_cd_dir tarallo; then
 	xdg-open "$TARALLO_URL"
 	echo -e "\nT.A.R.A.L.L.O. was successfully installed!\nIt is available at $TARALLO_URL\nYou can shut it down from $PWD/tarallo with: make down\n"
 else
-	echo -e "\nT.A.R.A.L.L.O. could not start.\nYou should try to reinstall it from scratch\nContinuing...\n"
+	echo -e "\nT.A.R.A.L.L.O. could not start.\nYou should try reinstalling it from scratch.\nContinuing...\n"
 	sleep 2
 fi
 
@@ -128,7 +128,7 @@ if setup_cd_dir weeehire-ng; then
 	xdg-open "$WEEEHIRE_URL"
 	echo -e "\nWEEEhire-ng was successfully installed!\nIt is available at $WEEEHIRE_URL\nYou can shut it down from $PWD/weeehire-ng with: docker-compose down\n"
 else
-	echo -e "\nWEEEhire-ng could not start.\nYou should try to reinstall it from scratch\nContinuing...\n"
+	echo -e "\nWEEEhire-ng could not start.\nYou should try reinstalling it from scratch.\nContinuing...\n"
 	sleep 2
 fi
 
@@ -143,7 +143,7 @@ if setup_cd_dir peracotta; then
 	cd ..
 	echo -e "\nP.E.R.A.C.O.T.T.A. was successfully installed!\nYou can run it from $PWD/peracotta in the new xterm window with: python main.py --gui\n"
 else
-	echo -e "\nP.E.R.A.C.O.T.T.A. could not start.\nYou should try to reinstall it from scratch\nContinuing...\n"
+	echo -e "\nP.E.R.A.C.O.T.T.A. could not start.\nYou should try reinstalling it from scratch.\nContinuing...\n"
 	sleep 2
 fi
 
@@ -158,7 +158,7 @@ if setup_cd_dir pesto; then
 	cd ..
 	echo -e "\nP.E.S.T.O. successfully installed!\nYou can run it from $PWD/pesto with: python pinolo.py\n"
 else
-	echo -e "\nP.E.S.T.O. could not start.\nYou should try to reinstall it from scratch\nContinuing...\n"
+	echo -e "\nP.E.S.T.O. could not start.\nYou should try reinstalling it from scratch.\nContinuing...\n"
 	sleep 2
 fi
 
@@ -175,7 +175,7 @@ if setup_cd_dir sardina; then
 	cd ..
 	echo -e "\nS.A.R.D.I.N.A. was successfully installed!\nYou can run it from $PWD/sardina with: docker run --rm -v \$PWD/output:/sardina/output -it docker.caste.dev/sardina\nYou can also run it with: python main.py --cloc --commits --sloc --graphs --lang\n"
 else
-	echo -e "\nP.E.S.T.O. could not start.\nYou should try to reinstall it from scratch\nContinuing...\n"
+	echo -e "\nP.E.S.T.O. could not start.\nYou should try reinstalling it from scratch.\nContinuing...\n"
 	sleep 2
 fi
 
