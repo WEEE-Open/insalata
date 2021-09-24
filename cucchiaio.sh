@@ -111,7 +111,6 @@ echo -e "\nInstalling T.A.R.A.L.L.O (Tuttofare Assistente il Riuso di Aggeggi Lo
 if setup_cd_dir tarallo; then
 	#sed -i 's/image: /image: docker.caste.dev\//g' docker-compose.yml
 	make up
-	make examples
 	cd ..
 	xdg-open "$TARALLO_URL"
 	echo -e "\nT.A.R.A.L.L.O. was successfully installed!\nIt is available at $TARALLO_URL\nYou can shut it down from $PWD/tarallo with: make down\n"
