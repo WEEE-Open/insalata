@@ -2,9 +2,11 @@
 
 set -eu
 
+[[ $EUID = 0 ]] && SUDO="" || SUDO="sudo"
+
 # remove existing directory
 function rm_x_dir() {
-	[[ -d "$1" ]] && rm -rf "$1" || true  # true needed to keep running if dir does not exist
+	[[ -d "$1" ]] && $SUDO rm -rf "$1" || true  # true needed to keep running if dir does not exist
 }
 
 read -p "Do you want to tear down and clean up everything in this directory? [y/N] " PROCEED

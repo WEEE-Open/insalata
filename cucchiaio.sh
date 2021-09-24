@@ -81,7 +81,7 @@ function _git_error() {
 
 # remove existing directory
 function _rm_x_dir() {
-	[[ -d "$1" ]] && rm -rf "$1" || true  # true needed to keep running if dir does not exist
+	[[ -d "$1" ]] && $SUDO rm -rf "$1" || true  # true needed to keep running if dir does not exist
 }
 
 function setup_cd_dir() {
