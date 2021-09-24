@@ -170,7 +170,7 @@ if setup_cd_dir sardina; then
 	# the docker container uses a different config.py with the needed PAT, these changes could be useful if run without docker
 	sed -i 's/dev_mode = False/dev_mode = True/g' config.py || true
 	sed -i 's/keep_repos = False/keep_repos = True/g' config.py || true
-	xterm -hold -title "S.A.R.D.I.N.A." -e "docker run --rm -v \$PWD/output:/sardina/output -it docker.caste.dev/sardina; sudo chown -R \$USER .; xdg-open output; bash" &
+	xterm -hold -title "S.A.R.D.I.N.A." -e "docker run --rm -v \$PWD/output:/sardina/output -it docker.caste.dev/sardina; while :; do if sudo chown -R \$USER .; then xdg-open output; bash; fi; done" &
 	#deactivate
 	cd ..
 	echo -e "\nS.A.R.D.I.N.A. was successfully installed!\nYou can run it from $PWD/sardina with: docker run --rm -v \$PWD/output:/sardina/output -it docker.caste.dev/sardina\nYou can also run it with: python main.py --cloc --commits --sloc --graphs --lang\n"
