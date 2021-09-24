@@ -183,5 +183,7 @@ fi
 if [[ $INTERNET = 1 ]]; then
 	echo -e "\nOpening WEEE Open's GitHub page in the browser...\n"
 	xdg-open "$GH_URL"
+	echo -e "\nOpening S.A.R.D.I.N.A. GitHub page in the browser...\n"
+	xdg-open "$GH_URL"sardina
 fi
 
