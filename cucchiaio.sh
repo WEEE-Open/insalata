@@ -153,7 +153,9 @@ if setup_cd_dir pesto; then
 	[[ $INTERNET = 1 ]] && prep_venv
 	[[ $INTERNET = 1 ]] && pip install -r requirements_client.txt
 	[[ $INTERNET = 1 ]] && pip install -r requirements_server.txt
-	xterm -hold -title "P.E.S.T.O." -e "python basilico.py & sleep 5 && python pinolo.py; bash" &
+	xterm -hold -title "P.E.S.T.O. Server" -e "python basilico.py; bash" &
+	sleep 5
+	xterm -hold -title "P.E.S.T.O. Client" -e "python pinolo.py; bash" &
 	#deactivate
 	cd ..
 	echo -e "\nP.E.S.T.O. successfully installed!\nYou can run it from $PWD/pesto with: python pinolo.py\n"
