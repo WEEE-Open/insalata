@@ -56,9 +56,6 @@ if [[ $INTERNET = 1 ]]; then
 		$SUDO pacman -Sy $DEPS
 	fi
 
-	echo -e "\nLogin into our docker registry (first time only)...\n"
-	docker login docker.caste.dev
-
 	echo -e "\nUpdating pip3...\n"
 	pip3 install --upgrade pip
 fi
@@ -74,6 +71,10 @@ if [[ ! "$(groups)" = *"docker"* ]]; then
 	#$SUDO chmod g+s $(which docker)
 fi
 
+if [[ $INTERNET = 1 ]]; then
+	echo -e "\nLogin into our docker registry (first time only)...\n"
+	docker login docker.caste.dev
+fi
 
 function _git_error() {
 	echo -e "\nThere was an error with git clone, aborting...\n"
