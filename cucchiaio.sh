@@ -29,7 +29,7 @@ sleep 2  # to let the user acknowledge their choice
 GH_URL="https://github.com/weee-open/"
 DEPS="git make docker.io docker-compose pciutils i2c-tools mesa-utils smartmontools dmidecode python3 python3-pip python3-venv cloc sqlite3 xterm gnupg2 pass wget htop vim"
 TARALLO_URL="http://localhost:8080"
-WEEEHIRE_URL="http://localhost:80"
+WEEEHIRE_URL="http://localhost:8082"
 
 if [[ $INTERNET = 1 ]]; then
 	echo -e "\nUpdating local repos...\n"
