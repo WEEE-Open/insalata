@@ -29,6 +29,7 @@ sleep 2  # to let the user acknowledge their choice
 GH_URL="https://github.com/weee-open/"
 DEPS="git make docker.io docker-compose pciutils i2c-tools mesa-utils smartmontools dmidecode python3 python3-pip python3-venv cloc sqlite3 xterm gnupg2 pass wget htop vim"
 TARALLO_URL="http://localhost:8080"
+TARALLO_TOKEN="yoLeCHmEhNNseN0BlG0s3A:ksfPYziGg7ebj0goT0Zc7pbmQEIYvZpRTIkwuscAM_k"
 WEEEHIRE_URL="http://localhost:8082"
 
 if [[ $INTERNET = 1 ]]; then
@@ -155,6 +156,10 @@ if setup_cd_dir pesto; then
 	[[ $INTERNET = 1 ]] && prep_venv
 	[[ $INTERNET = 1 ]] && pip install -r requirements_client.txt
 	[[ $INTERNET = 1 ]] && pip install -r requirements_server.txt
+	echo "TEST_MODE=1
+TARALLO_URL=$TARALLO_URL
+TARALLO_TOKEN=$TARALLO_TOKEN
+" > .env
 	xterm -hold -title "P.E.S.T.O. Server" -e "python basilico.py; bash" &
 	sleep 5
 	xterm -hold -title "P.E.S.T.O. Client" -e "python pinolo.py; bash" &
