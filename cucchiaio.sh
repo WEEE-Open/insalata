@@ -124,7 +124,7 @@ fi
 
 echo -e "\nInstalling WEEEhire-ng...\n"
 if setup_cd_dir weeehire-ng; then
-	[[ ! -f weeehire.db ]] && sqlite3 weeehire.db < database.sql
+	[[ ! -f weeehire.db ]] && sqlite3 weeehire.db < database.sql && sqlite3 weeehire.db < example-data.sql
 	[[ ! -f config/config.php ]] && cp config/config-example.php config/config.php
 	docker-compose up -d
 	cd ..
