@@ -141,7 +141,7 @@ if setup_cd_dir peracotta; then
 	[[ $INTERNET = 1 ]] && prep_venv
 	[[ $INTERNET = 1 ]] && pip install -r requirements.txt
 	[[ ! -f .env ]] && cp .env.example .env
-	xterm -hold -title "P.E.R.A.C.O.T.T.A." -e "python main.py --gui; bash" &
+	xterm -hold -title "P.E.R.A.C.O.T.T.A." -e "python peracotta; bash" &
 	#deactivate
 	cd ..
 	echo -e "\nP.E.R.A.C.O.T.T.A. was successfully installed!\nYou can run it from $PWD/peracotta in the new xterm window with: python main.py --gui\n"
