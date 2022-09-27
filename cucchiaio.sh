@@ -170,12 +170,12 @@ fi
 
 echo -e "\nInstalling S.A.R.D.I.N.A. (Statistiche Amabili Rendimento Degli Informatici Nell’Anno)...\n"
 if setup_cd_dir sardina; then
-	make_venv
-	[[ $INTERNET = 1 ]] && prep_venv
-	[[ $INTERNET = 1 ]] && pip install -r requirements.txt
+	#make_venv
+	#[[ $INTERNET = 1 ]] && prep_venv
+	#[[ $INTERNET = 1 ]] && pip install -r requirements.txt
 	# the docker container uses a different config.py with the needed PAT, these changes could be useful if run without docker
-	sed -i 's/dev_mode = False/dev_mode = True/g' config.py || true
-	sed -i 's/keep_repos = False/keep_repos = True/g' config.py || true
+	#sed -i 's/dev_mode = False/dev_mode = True/g' config.py || true
+	#sed -i 's/keep_repos = False/keep_repos = True/g' config.py || true
 	xterm -hold -title "S.A.R.D.I.N.A." -e "docker run --rm -v \$PWD/output:/sardina/output -it docker.caste.dev/sardina; while :; do if sudo chown -R \$USER .; then xdg-open output; bash; fi; done" &
 	#deactivate
 	cd ..
