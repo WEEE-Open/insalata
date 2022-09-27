@@ -30,7 +30,7 @@ GH_URL="https://github.com/weee-open/"
 DEPS="git make docker.io docker-compose pciutils i2c-tools mesa-utils smartmontools dmidecode python3 python3-pip python3-venv cloc sqlite3 xterm gnupg2 pass wget htop vim"
 TARALLO_URL="http://localhost:8080"
 TARALLO_TOKEN="yoLeCHmEhNNseN0BlG0s3A:ksfPYziGg7ebj0goT0Zc7pbmQEIYvZpRTIkwuscAM_k"
-WEEEHIRE_URL="http://localhost:8082"
+WEEEHIRE_URL="http://localhost:8082/candidates.php"
 
 if [[ $INTERNET = 1 ]]; then
 	echo -e "\nUpdating local repos...\n"
