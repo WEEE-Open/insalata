@@ -156,10 +156,7 @@ if setup_cd_dir pesto; then
 	[[ $INTERNET = 1 ]] && prep_venv
 	[[ $INTERNET = 1 ]] && pip install -r requirements_client.txt
 	[[ $INTERNET = 1 ]] && pip install -r requirements_server.txt
-	echo "TEST_MODE=1
-TARALLO_URL=$TARALLO_URL
-TARALLO_TOKEN=$TARALLO_TOKEN
-" > .env
+	cp .env.example .env
 	xterm -hold -title "P.E.S.T.O. Server" -e "python basilico.py; bash" &
 	sleep 5
 	xterm -hold -title "P.E.S.T.O. Client" -e "python pinolo.py; bash" &
