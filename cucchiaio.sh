@@ -27,10 +27,14 @@ sleep 2  # to let the user acknowledge their choice
 [[ -f /etc/debian_version ]] && DISTRO_BASE="debian" || DISTRO_BASE="arch"
 [[ $EUID = 0 ]] && SUDO="" || SUDO="sudo"
 GH_URL="https://github.com/weee-open/"
+GHIO_URL="https://weee-open.github.io/"
+WEEEBSITE_URL="https://weeeopen.polito.it/"
 DEPS="git make docker.io docker-compose pciutils i2c-tools mesa-utils smartmontools dmidecode python3 python3-pip python3-venv cloc sqlite3 xterm gnupg2 pass wget htop vim"
 TARALLO_URL="http://localhost:8080"
-TARALLO_TOKEN="yoLeCHmEhNNseN0BlG0s3A:ksfPYziGg7ebj0goT0Zc7pbmQEIYvZpRTIkwuscAM_k"
 WEEEHIRE_URL="http://localhost:8082/candidates.php"
+SARDINA_URL="$GH_URL"sardina
+SKEEEP_URL="$WEEEBSITE_URL"skeeep
+SKEEELLED_URL="$GHIO_URL"skeeelled
 
 if [[ $INTERNET = 1 ]]; then
 	echo -e "\nUpdating local repos...\n"
@@ -186,9 +190,15 @@ else
 fi
 
 if [[ $INTERNET = 1 ]]; then
+	echo -e "\nOpening WEEEbsite in the browser...\n"
+	xdg-open "$WEEEBSITE_URL" &
 	echo -e "\nOpening WEEE Open's GitHub page in the browser...\n"
 	xdg-open "$GH_URL" &
 	echo -e "\nOpening S.A.R.D.I.N.A. GitHub page in the browser...\n"
-	xdg-open "$GH_URL"sardina &
+	xdg-open "$SARDINA_URL" &
+	echo -e "\nOpening skeeep in the browser...\n"
+	xdg-open "$SKEEEP_URL" &
+	echo -e "\nOpening skeeelled in the browser...\n"
+	xdg-open "$SKEEELLED_URL" &
 fi
 
