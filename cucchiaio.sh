@@ -115,7 +115,7 @@ if setup_cd_dir tarallo; then
 	#sed -i 's/image: /image: docker.caste.dev\//g' docker-compose.yml
 	make up
 	cd ..
-	xdg-open "$TARALLO_URL"
+	xdg-open "$TARALLO_URL" &
 	echo -e "\nT.A.R.A.L.L.O. was successfully installed!\nIt is available at $TARALLO_URL\nYou can shut it down from $PWD/tarallo with: make down\n"
 else
 	echo -e "\nT.A.R.A.L.L.O. could not start.\nYou should try reinstalling it from scratch.\nContinuing...\n"
@@ -128,7 +128,7 @@ if setup_cd_dir weeehire-ng; then
 	[[ ! -f config/config.php ]] && cp config/config-example.php config/config.php
 	docker-compose up -d
 	cd ..
-	xdg-open "$WEEEHIRE_URL"
+	xdg-open "$WEEEHIRE_URL" &
 	echo -e "\nWEEEhire-ng was successfully installed!\nIt is available at $WEEEHIRE_URL\nYou can shut it down from $PWD/weeehire-ng with: docker-compose down\n"
 else
 	echo -e "\nWEEEhire-ng could not start.\nYou should try reinstalling it from scratch.\nContinuing...\n"
@@ -190,8 +190,8 @@ fi
 
 if [[ $INTERNET = 1 ]]; then
 	echo -e "\nOpening WEEE Open's GitHub page in the browser...\n"
-	xdg-open "$GH_URL"
+	xdg-open "$GH_URL" &
 	echo -e "\nOpening S.A.R.D.I.N.A. GitHub page in the browser...\n"
-	xdg-open "$GH_URL"sardina
+	xdg-open "$GH_URL"sardina &
 fi
 
