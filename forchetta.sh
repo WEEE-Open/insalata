@@ -25,9 +25,11 @@ if [[ -d tarallo ]]; then
 fi
 
 if [[ -d weeehire-ng ]]; then
+	cd weeehire-ng
 	if [[ -f docker-compose.yml ]]; then
 		docker-compose down
 	fi
+	cd ..
 fi
 
 read -p "Terminate all xterm processes? [y/N] " PROCEED
